@@ -1,0 +1,84 @@
+{
+  "name": "react-boilerplate",
+  "version": "0.0.1",
+  "description": "webpack + esbuild-loader react boilerplate",
+  "main": "index.js",
+  "scripts": {
+    "start": "webpack-dev-server --mode development",
+    "build:alpha": "webpack --mode development",
+    "build": "webpack --mode production",
+    "test": "jest --watchAll",
+    "coverage": "jest --coverage"
+  },
+  "keywords": [],
+  "author": "sh.c",
+  "license": "ISC",
+  "dependencies": {
+    "@shopby/shop-sdk": "1.0.8",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-router-dom": "^6.0.2"
+  },
+  "devDependencies": {
+    "@babel/plugin-transform-runtime": "7.16.4",
+    "@babel/preset-env": "^7.16.4",
+    "@babel/preset-react": "7.16.0",
+    "@babel/preset-typescript": "7.16.0",
+    "@testing-library/jest-dom": "5.15.0",
+    "@testing-library/react": "12.1.2",
+    "@types/dotenv-webpack": "^7.0.3",
+    "@types/jest": "27.0.3",
+    "@types/react": "17.0.35",
+    "@types/react-dom": "17.0.11",
+    "@typescript-eslint/eslint-plugin": "5.4.0",
+    "@typescript-eslint/parser": "5.4.0",
+    "babel-eslint": "10.1.0",
+    "babel-jest": "27.3.1",
+    "babel-polyfill": "^6.26.0",
+    "clean-webpack-plugin": "^4.0.0",
+    "core-js": "^3.19.1",
+    "css-loader": "^6.5.1",
+    "dotenv-webpack": "^7.0.3",
+    "esbuild-loader": "^2.16.0",
+    "eslint": "^7.28.0",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-webpack-plugin": "3.1.1",
+    "file-loader": "^6.2.0",
+    "fork-ts-checker-webpack-plugin": "6.5.0",
+    "fs": "0.0.1-security",
+    "html-webpack-plugin": "^5.5.0",
+    "husky": "4",
+    "jest": "27.3.1",
+    "jest-plugin-context": "2.9.0",
+    "jest-transform-stub": "2.0.0",
+    "lint-staged": "^12.0.3",
+    "mini-css-extract-plugin": "2.4.5",
+    "optimize-css-assets-webpack-plugin": "^6.0.1",
+    "prettier": "^2.4.1",
+    "react-helmet": "^6.1.0",
+    "sass": "1.43.5",
+    "sass-loader": "12.3.0",
+    "style-loader": "3.3.1",
+    "ts-jest": "27.0.7",
+    "tui-date-picker": "^4.3.1",
+    "typescript": "^4.5.2",
+    "url-loader": "4.1.1",
+    "webpack": "^5.64.1",
+    "webpack-bundle-analyzer": "^4.5.0",
+    "webpack-cli": "^4.9.1",
+    "webpack-dev-server": "^4.5.0",
+    "webpack-manifest-plugin": "^4.0.2",
+    "webpack-merge": "^5.8.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix"
+    ]
+  }
+}

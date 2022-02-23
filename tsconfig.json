@@ -1,0 +1,51 @@
+{
+  "compilerOptions": {
+    /* Language and Environment */
+    "target": "esnext",
+    "lib": [
+      "esnext",
+      "dom",
+      "dom.iterable",
+      "scripthost"
+    ],
+    "jsx": "react",
+    "experimentalDecorators": true,
+
+    /* Modules */
+    "module": "ES6",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "paths": {
+      "@/*": [
+        "src/*"
+      ]
+    },
+    "types": ["node", "jest"],
+    "typeRoots": ["./node_modules/@types"],
+
+    /* Emit */
+    "sourceMap": true,
+
+    /* Interop Constraints */
+    "esModuleInterop": true,
+
+    /* Type Checking */
+    "strict": true,                                      /* Enable all strict type-checking options. */
+    "noImplicitAny": true,                            /* Enable error reporting for expressions and declarations with an implied `any` type.. */
+    "strictNullChecks": true,                         /* When type checking, take into account `null` and `undefined`. */
+
+    /* Completeness */
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+  },
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.tsx",
+    "src/tests/**/*.ts",
+    "src/tests/**/*.tsx",
+    "node_modules/@types/jest/index.d.ts",
+    "node_modules/@types/jest/index.d.ts"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
