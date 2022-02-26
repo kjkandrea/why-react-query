@@ -7,8 +7,6 @@ const Todos = () => {
 
   if (issues.isLoading) return <h1>로딩중!!</h1>;
 
-  if (issues.error) return <>'An error'</>;
-
   return (
     <ul>
       {issues.data &&
