@@ -6,19 +6,17 @@ interface Issue {
   id: number;
 }
 
+export interface PostIssue {
+  title: string;
+}
+
 const API_URL = 'https://api.github.com/repos/kjkandrea/why-react-query';
 
 export const getIssues = (): Promise<Issue[]> => axios.get(API_URL + '/issues').then(res => res.data);
 
-export const postIssues = () =>
-  axios.post(
-    API_URL + '/issues',
-    {
-      title: 'title',
+export const postIssues = (data: PostIssue) =>
+  axios.post(API_URL + '/issues', data, {
+    headers: {
+      Authorization: `Bearer ${personal}`,
     },
-    {
-      headers: {
-        Authorization: `Bearer ${personal}`,
-      },
-    },
-  );
+  });
