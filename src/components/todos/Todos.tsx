@@ -1,35 +1,29 @@
 import React from 'react';
-import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { getIssues, PostIssue, postIssues } from '@/api';
+import { useIssues } from '@/hooks/api/issue';
 
 const Todos = () => {
-  const queryClient = useQueryClient();
-  const issues = useQuery('issues', getIssues);
-  const postIssue = useMutation(['issues', 'post'], (data: PostIssue) => postIssues(data), {
-    onSettled: () => {
-      console.log('onSettled');
-      queryClient.invalidateQueries('issues').then(console.log);
-    },
-  });
-
-  if (issues.isLoading) return <h1>로딩중!!</h1>;
+  const issues = useIssues();
 
   return (
     <>
+      {(issues.read.isLoading || issues.create.isLoading) && <h1>로딩중...</h1>}
+
       <button
         onClick={() => {
-          postIssue.mutate({
-            title: `후룽부룽 ${issues?.data?.length ?? 0}`,
+          issues.create.mutate({
+            title: '후룽부룽',
           });
         }}
       >
         post issue: 후룽부룽
       </button>
       <ul>
-        {issues.data &&
-          issues.data.map(issue => (
+        {issues.read.data &&
+          issues.read.data.map(issue => (
             <li key={issue.id}>
-              <h2>{issue.title}</h2>
+              <h2>
+                {issue.title} : {issue.id}
+              </h2>
             </li>
           ))}
       </ul>
