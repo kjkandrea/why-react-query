@@ -1,5 +1,5 @@
 import React from 'react';
-import { useIssues } from '@/hooks/api/issue';
+import { useIssues } from '@/hooks/domain/issue';
 
 const Todos = () => {
   const issues = useIssues();

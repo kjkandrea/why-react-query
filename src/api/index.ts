@@ -24,7 +24,7 @@ export const getIssues = (): Promise<Issue[]> => axios.get(API_URL + '/issues', 
 
 export const postIssues = (data: PostIssue) => axios.post(API_URL + '/issues', data, config);
 
-export const deleteIssues = (issueNo: number) =>
+export const closeIssues = (issueNo: number) =>
   axios.patch(
     API_URL + `/issues/${issueNo}`,
     {
@@ -32,9 +32,3 @@ export const deleteIssues = (issueNo: number) =>
     },
     config,
   );
-
-// await octokit.request('DELETE /repos/{owner}/{repo}/issues/{issue_number}/lock', {
-//   owner: 'octocat',
-//   repo: 'hello-world',
-//   issue_number: 42
-// })

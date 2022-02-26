@@ -1,5 +1,5 @@
 import { useMutation, useQuery, useQueryClient } from 'react-query';
-import { deleteIssues, getIssues, PostIssue, postIssues } from '@/api';
+import { closeIssues, getIssues, PostIssue, postIssues } from '@/api';
 
 export const useIssues = () => {
   const queryClient = useQueryClient();
@@ -12,7 +12,7 @@ export const useIssues = () => {
     create: useMutation(key, (data: PostIssue) => postIssues(data), mutationOption),
     read: useQuery(key, getIssues),
     patch: {
-      close: useMutation(key, (issueNo: number) => deleteIssues(issueNo), mutationOption),
+      close: useMutation(key, (issueNo: number) => closeIssues(issueNo), mutationOption),
     },
   };
 };
