@@ -5,9 +5,20 @@ import { useQuery } from 'react-query';
 const Todos = () => {
   const issues = useQuery('issues', getIssues);
 
-  console.log(issues);
+  if (issues.isLoading) return <h1>로딩중!!</h1>;
 
-  return <h1>안녕 나 투두리스트</h1>;
+  if (issues.error) return <>'An error'</>;
+
+  return (
+    <ul>
+      {issues.data &&
+        issues.data.map(issue => (
+          <li key={issue.id}>
+            <h2>{issue.title}</h2>
+          </li>
+        ))}
+    </ul>
+  );
 };
 
 export default Todos;
