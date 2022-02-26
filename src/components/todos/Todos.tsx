@@ -12,7 +12,7 @@ const Todos = () => {
 
   return (
     <>
-      <button onClick={() => setIssuesEnabled(true)}>fetch</button>
+      {!issues.isFetched && <button onClick={() => setIssuesEnabled(true)}>fetch</button>}
       <ul>
         {issues.data &&
           issues.data.map(issue => (
