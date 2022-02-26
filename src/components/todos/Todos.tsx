@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
-import { getIssues } from '@/api';
+import { getIssues, postIssues } from '@/api';
 import { useQuery } from 'react-query';
+
+postIssues().then(console.log);
 
 const Todos = () => {
   const [issuesEnabled, setIssuesEnabled] = useState(false);

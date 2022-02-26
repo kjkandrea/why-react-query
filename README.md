@@ -3,6 +3,8 @@
 
 ## useQuery
 
+**📌 CRUD 의 Read 역할**
+
 Query Key 와 Query Function 으로 구성됨
 
 ```ts
@@ -12,3 +14,8 @@ const todos = useQuery('todos', fetchTodos)
 ```
 
 * Query Key : React DevTools 디버깅용. Symbol 쓸때 key 같은 명시적인 의미로 사용하는듯
+
+## useMutation
+
+**📌 CRUD 의 Create, Update, Delete 역할**
+
