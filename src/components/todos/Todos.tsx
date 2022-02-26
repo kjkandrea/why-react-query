@@ -1,11 +1,11 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { getIssues } from '@/api';
-// import {} from 'react-query';
+import { useQuery } from 'react-query';
 
 const Todos = () => {
-  useEffect(() => {
-    getIssues().then(console.log);
-  }, []);
+  const issues = useQuery('issues', getIssues);
+
+  console.log(issues);
 
   return <h1>안녕 나 투두리스트</h1>;
 };
