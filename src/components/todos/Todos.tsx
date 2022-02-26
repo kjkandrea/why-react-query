@@ -1,20 +1,13 @@
-import React, { useState } from 'react';
-import { getIssues, postIssues } from '@/api';
-import { useQuery } from 'react-query';
-
-postIssues().then(console.log);
+import React from 'react';
+import { useIssues } from '@/hooks/api/issue';
 
 const Todos = () => {
-  const [issuesEnabled, setIssuesEnabled] = useState(false);
-  const issues = useQuery('issues', getIssues, {
-    enabled: issuesEnabled,
-  });
+  const issues = useIssues();
 
   if (issues.isLoading) return <h1>로딩중!!</h1>;
 
   return (
     <>
-      {!issues.isFetched && <button onClick={() => setIssuesEnabled(true)}>fetch</button>}
       <ul>
         {issues.data &&
           issues.data.map(issue => (
