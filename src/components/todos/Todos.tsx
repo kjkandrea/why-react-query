@@ -24,6 +24,13 @@ const Todos = () => {
               <h2>
                 {issue.title} : {issue.id}
               </h2>
+              <button
+                onClick={() => {
+                  issues.patch.close.mutate(issue.number);
+                }}
+              >
+                close
+              </button>
             </li>
           ))}
       </ul>

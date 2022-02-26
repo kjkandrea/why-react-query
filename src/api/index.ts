@@ -4,6 +4,7 @@ import { personal } from '../../config/token';
 interface Issue {
   title: string;
   id: number;
+  number: number;
 }
 
 export interface PostIssue {
@@ -12,18 +13,28 @@ export interface PostIssue {
 
 const API_URL = 'https://api.github.com/repos/kjkandrea/why-react-query';
 
-export const getIssues = (): Promise<Issue[]> =>
-  axios
-    .get(API_URL + '/issues', {
-      headers: {
-        Authorization: `Bearer ${personal}`,
-      },
-    })
-    .then(res => res.data);
+// TODO: axios request intercept
+const config = {
+  headers: {
+    Authorization: `Bearer ${personal}`,
+  },
+};
 
-export const postIssues = (data: PostIssue) =>
-  axios.post(API_URL + '/issues', data, {
-    headers: {
-      Authorization: `Bearer ${personal}`,
+export const getIssues = (): Promise<Issue[]> => axios.get(API_URL + '/issues', config).then(res => res.data);
+
+export const postIssues = (data: PostIssue) => axios.post(API_URL + '/issues', data, config);
+
+export const deleteIssues = (issueNo: number) =>
+  axios.patch(
+    API_URL + `/issues/${issueNo}`,
+    {
+      state: 'closed',
     },
-  });
+    config,
+  );
+
+// await octokit.request('DELETE /repos/{owner}/{repo}/issues/{issue_number}/lock', {
+//   owner: 'octocat',
+//   repo: 'hello-world',
+//   issue_number: 42
+// })
