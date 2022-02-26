@@ -19,3 +19,6 @@ const todos = useQuery('todos', fetchTodos)
 
 **📌 CRUD 의 Create, Update, Delete 역할**
 
+## invalidateQueries : TODO
+
+이거하면 stale 상태가 되서 refetch 가능함. 아직 뭔지 잘 모르겠음 ㅎ
