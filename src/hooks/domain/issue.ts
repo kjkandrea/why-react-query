@@ -11,7 +11,7 @@ export const useIssues = () => {
   return {
     create: useMutation(key, (data: PostIssue) => postIssues(data), mutationOption),
     read: useQuery(key, getIssues),
-    patch: {
+    update: {
       close: useMutation(key, (issueNo: number) => closeIssues(issueNo), mutationOption),
     },
   };

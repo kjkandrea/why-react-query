@@ -25,7 +25,7 @@ export const getIssues = (): Promise<Issue[]> => axios.get(API_URL + '/issues', 
 export const postIssues = (data: PostIssue) => axios.post(API_URL + '/issues', data, config);
 
 export const closeIssues = (issueNo: number) =>
-  axios.patch(
+  axios.update(
     API_URL + `/issues/${issueNo}`,
     {
       state: 'closed',

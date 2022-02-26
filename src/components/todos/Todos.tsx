@@ -26,7 +26,7 @@ const Todos = () => {
               </h2>
               <button
                 onClick={() => {
-                  issues.patch.close.mutate(issue.number);
+                  issues.update.close.mutate(issue.number);
                 }}
               >
                 close
