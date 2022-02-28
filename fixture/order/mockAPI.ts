@@ -1,15 +1,13 @@
-import { Order } from './interface';
+import { Delivery, Order } from '../interface';
+import { deliveries, orders } from '../mockData';
 
-const orders: Order[] = [
-  {
-    orderNo: 1,
-    ordererName: 'JK',
-  },
-];
-
-export const getOrders = () =>
+const dummyPromise = <T extends any[]>(dummyData: T): Promise<T> =>
   new Promise(resolve => {
     setTimeout(() => {
-      resolve(orders);
+      resolve(dummyData);
     }, 250);
   });
+
+export const getOrders = () => dummyPromise<Order[]>(orders);
+
+export const getDeliveries = () => dummyPromise<Delivery[]>(deliveries);

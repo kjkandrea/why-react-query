@@ -9,3 +9,9 @@ export interface Order {
   ordererName: string;
   // orderProducts: Product[]
 }
+
+export interface Delivery {
+  orderNo: number;
+  deliveryNo: number;
+  deliveryAddress: string;
+}
