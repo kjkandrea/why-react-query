@@ -1,7 +1,7 @@
 import { Delivery, Order } from '../interface';
 import { deliveries, orders } from '../mockData';
 
-const dummyPromise = <T extends any[]>(dummyData: T): Promise<T> =>
+const dummyPromise = <T>(dummyData: T): Promise<T> =>
   new Promise(resolve => {
     setTimeout(() => {
       resolve(dummyData);
@@ -11,3 +11,9 @@ const dummyPromise = <T extends any[]>(dummyData: T): Promise<T> =>
 export const getOrders = () => dummyPromise<Order[]>(orders);
 
 export const getDeliveries = () => dummyPromise<Delivery[]>(deliveries);
+
+export const getDeliveryByOrderNo = (orderNo: number) => {
+  const data = deliveries.find(order => orderNo === order.orderNo);
+
+  return dummyPromise<Delivery | undefined>(data);
+};
