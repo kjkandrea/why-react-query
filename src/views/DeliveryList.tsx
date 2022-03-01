@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 import { getDeliveryByOrderNos, getOrders } from '../../fixture/order/mockAPI';
 import { useQuery } from 'react-query';
 import { Delivery, Order } from '../../fixture/interface';
@@ -8,7 +8,7 @@ interface OrderByDeliveryNo extends Delivery {
 }
 
 const DeliveryList = () => {
-  const orders = useQuery('order', getOrders, {
+  const { data: orders } = useQuery(['order'], getOrders, {
     async onSuccess(orders) {
       const orderNos = orders.map(order => order.orderNo);
       const rawDeliveries = await getDeliveryByOrderNos(orderNos);
@@ -28,13 +28,17 @@ const DeliveryList = () => {
     },
   });
 
-  console.log(orders.data);
+  const orderNos = useMemo(() => orders && orders.map(order => order.orderNo), [orders]);
 
-  // useEffect(() => {
-  //   getOrders().then(console.log);
-  //   getDeliveries().then(console.log);
-  //   getDeliveryByOrderNo(1).then(console.log);
-  // }, []);
+  const { data: deliveriesByOrderNo } = useQuery(
+    ['deliveriesByOrderNo', orderNos],
+    () => orderNos && getDeliveryByOrderNos(orderNos),
+    {
+      enabled: Array.isArray(orderNos) && orderNos.length > 0,
+    },
+  );
+
+  console.log(deliveriesByOrderNo);
 
   return <h1>응애 나 딜리버리 리스트</h1>;
 };
