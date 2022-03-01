@@ -21,9 +21,9 @@ const DeliveryList = () => {
     },
   );
 
-  const orderByDeliveryNoHashTable = useMemo(() => {
+  const orderByDeliveryNoGroupSquareArray = useMemo(() => {
     if (deliveriesByOrderNo === undefined) return;
-    return deliveriesByOrderNo.reduce<{
+    const orderByDeliveryNoHashTable = deliveriesByOrderNo.reduce<{
       [key: string]: OrderByDeliveryNo[];
     }>((deliveryHashTable, delivery) => {
       const matchedOrder = orders?.find(order => order.orderNo === delivery.orderNo);
@@ -35,9 +35,10 @@ const DeliveryList = () => {
         : Object.assign(deliveryHashTable, { [orderByDeliveryNo.deliveryNo]: [orderByDeliveryNo] });
       return deliveryHashTable;
     }, {});
+    return Object.values(orderByDeliveryNoHashTable);
   }, [deliveriesByOrderNo]);
 
-  console.log(orderByDeliveryNoHashTable);
+  console.log(orderByDeliveryNoGroupSquareArray);
 
   return <h1>응애 나 딜리버리 리스트</h1>;
 };
