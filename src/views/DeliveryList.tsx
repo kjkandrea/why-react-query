@@ -50,8 +50,6 @@ const DeliveryList = () => {
     return Object.values(orderByDeliveryNoHashTable);
   }, [deliveriesByOrderNo, orderedProducts]);
 
-  console.log(orderedProductByDeliveryNoGroupSquareArray);
-
   return orderedProductByDeliveryNoGroupSquareArray === undefined ? (
     <p className={'data__empty'}>데이터가 없습니다.</p>
   ) : (
