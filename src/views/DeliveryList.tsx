@@ -7,6 +7,7 @@ interface OrderByDeliveryNo extends Delivery {
   orderNo: Order['orderNo'];
 }
 
+// TODO: 이 복잡한걸 어떻게 은닉한다??
 const DeliveryList = () => {
   const { data: orders } = useQuery(['order'], getOrders);
 
