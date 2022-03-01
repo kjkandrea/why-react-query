@@ -10,10 +10,8 @@ const dummyPromise = <T>(dummyData: T): Promise<T> =>
 
 export const getOrders = () => dummyPromise<Order[]>(orders);
 
-export const getDeliveries = () => dummyPromise<Delivery[]>(deliveries);
+export const getDeliveryByOrderNos = (orderNos: number[]) => {
+  const data = deliveries.filter(order => orderNos.includes(order.orderNo));
 
-export const getDeliveryByOrderNo = (orderNo: number) => {
-  const data = deliveries.find(order => orderNo === order.orderNo);
-
-  return dummyPromise<Delivery | undefined>(data);
+  return dummyPromise<Delivery[]>(data);
 };

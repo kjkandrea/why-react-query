@@ -1,25 +1,30 @@
 import React from 'react';
-import { getDeliveryByOrderNo, getOrders } from '../../fixture/order/mockAPI';
+import { getDeliveryByOrderNos, getOrders } from '../../fixture/order/mockAPI';
 import { useQuery } from 'react-query';
-import { Delivery } from '../../fixture/interface';
+import { Delivery, Order } from '../../fixture/interface';
+
+interface OrderByDeliveryNo extends Delivery {
+  orderNo: Order['orderNo'];
+}
 
 const DeliveryList = () => {
   const orders = useQuery('order', getOrders, {
     async onSuccess(orders) {
       const orderNos = orders.map(order => order.orderNo);
-      const rawDeliveries = await Promise.all(orderNos.map(orderNo => getDeliveryByOrderNo(orderNo)));
+      const rawDeliveries = await getDeliveryByOrderNos(orderNos);
+      const orderByDeliveryNoHashTable = rawDeliveries.reduce<{
+        [key: string]: OrderByDeliveryNo[];
+      }>((deliveryHashTable, delivery) => {
+        const matchedOrder = orders.find(order => order.orderNo === delivery.orderNo);
+        if (matchedOrder === undefined) return deliveryHashTable;
+        const orderByDeliveryNo = Object.assign(matchedOrder, delivery);
 
-      // TODO: Type
-      const deliveryGroup = rawDeliveries.filter(Boolean).reduce((acc, cur) => {
-        const delivery = cur as Delivery;
-        if (acc[delivery.deliveryNo]) {
-          acc[delivery.deliveryNo].push(delivery);
-        } else {
-          Object.assign(acc, { [delivery.deliveryNo]: [delivery] });
-        }
-        return acc;
-      }, {} as any);
-      console.log(deliveryGroup);
+        deliveryHashTable[orderByDeliveryNo.deliveryNo]
+          ? deliveryHashTable[orderByDeliveryNo.deliveryNo].push(orderByDeliveryNo)
+          : Object.assign(deliveryHashTable, { [orderByDeliveryNo.deliveryNo]: [orderByDeliveryNo] });
+        return deliveryHashTable;
+      }, {});
+      console.log(orderByDeliveryNoHashTable);
     },
   });
 
